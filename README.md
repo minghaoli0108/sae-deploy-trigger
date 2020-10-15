@@ -5,9 +5,11 @@ Deploy the trigger to Aliyun Function Compute Service. Each time you push your i
 ## build
 
 ```bash
-git clone git@github.com:AndyManastorm/deploy-trigger-java.git
-cd deploy-trigger-java/DeployTrgger
+git clone git@github.com:AndyManastorm/sae-deploy-trigger.git
+cd sae-deploy-trigger/DeployTrgger
 mvn clean package
+
+## result path: DeployTrgger/target/deploy-trigger-1.0-SNAPSHOT.jar
 
 ```
 
