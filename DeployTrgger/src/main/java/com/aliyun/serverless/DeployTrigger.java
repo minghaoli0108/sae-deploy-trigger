@@ -26,15 +26,15 @@ public class DeployTrigger implements HttpRequestHandler {
     public void handleRequest(HttpServletRequest request, HttpServletResponse response, Context context)
             throws IOException, ServletException {
         String desireToken = System.getenv("ACCESS_TOKEN");
-        String appId = System.getenv("APP_ID");
         FunctionComputeLogger logger = context.getLogger();
         String token = request.getParameter("ACCESS_TOKEN");
-        if (!Objects.equals(desireToken, token)) {
+        // ignore authentication if token is not provided
+        if (token != null && !Objects.equals(desireToken, token)) {
             response.setStatus(401);
             response.getOutputStream().write(("Unauthorized token: " + token).getBytes());
             return;
         }
-
+        String appId = request.getParameter("APP_ID");
         ServletInputStream bodyStream = request.getInputStream();
         Payload payload = JSONObject.parseObject(bodyStream, Payload.class);
         logger.info("Payload: " + JSONObject.toJSONString(payload, true));
