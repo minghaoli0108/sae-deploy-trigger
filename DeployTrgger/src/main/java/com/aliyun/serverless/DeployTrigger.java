@@ -82,7 +82,7 @@ public class DeployTrigger implements HttpRequestHandler {
         }
         // China mainland
         // String imageUrl = String.format("registry-vpc.%s.aliyuncs.com/%s:%s",
-        String imageUrl = String.format("acr-20231204-registry.%s.aliyuncs.com/%s:%s",
+        String imageUrl = String.format("acr-20231204-registry.%s.cr.aliyuncs.com/%s:%s",
                 payload.getRepository().getRegion(),
                 payload.getRepository().getRepoFullName(),
                 payload.getPushData().getTag());
