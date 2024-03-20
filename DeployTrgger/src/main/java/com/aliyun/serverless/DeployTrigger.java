@@ -44,7 +44,6 @@ public class DeployTrigger implements HttpRequestHandler {
         }
 
         String regionId = payload.getRepository().getRegion();
-        String InstanceId = payload.getRepository().InstanceId();
         IAcsClient client = SaeClientFactory.getClient(regionId, context.getExecutionCredentials());
         String imageUrl = getImageUrl(payload);
         DeployApplicationResponse resp;
