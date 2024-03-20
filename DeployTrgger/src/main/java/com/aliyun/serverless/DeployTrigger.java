@@ -96,5 +96,5 @@ public class DeployTrigger implements HttpRequestHandler {
         DeployApplicationResponse resp = client.getAcsResponse(request);
         return resp;
     }
-
+ 
 }
