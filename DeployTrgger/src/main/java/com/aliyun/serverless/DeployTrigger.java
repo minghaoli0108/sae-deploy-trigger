@@ -95,7 +95,6 @@ public class DeployTrigger implements HttpRequestHandler {
         request.setAppId(appId);
         request.setImageUrl(imageUrl);
         request.setAcrInstanceId(acrInstanceId);
-        setInstanceIds(String instanceIds) 
         DeployApplicationResponse resp = client.getAcsResponse(request);
         return resp;
     }
