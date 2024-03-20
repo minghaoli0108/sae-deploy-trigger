@@ -49,9 +49,9 @@ public class DeployTrigger implements HttpRequestHandler {
         DeployApplicationResponse resp;
         try {
             resp = deployApplication(client, appId, imageUrl);
-            logger.info(String.format("Trigger deploy image[%s] to application[%s].", InstanceId, appId, imageUrl));
+            logger.info(String.format("Trigger deploy image[%s] to application[%s].", appId, imageUrl));
         } catch (Exception e) {
-            logger.error(String.format("Trigger deploy image[%s] to application[%s] failed.", InstanceId, appId, imageUrl));
+            logger.error(String.format("Trigger deploy image[%s] to application[%s] failed.", appId, imageUrl));
             response.setStatus(500);
             OutputStream out = response.getOutputStream();
             out.write(String.format("Trigger deploy image[%s] to application[%s] failed.\n", appId, imageUrl).getBytes());
