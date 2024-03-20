@@ -44,17 +44,18 @@ public class DeployTrigger implements HttpRequestHandler {
         }
 
         String regionId = payload.getRepository().getRegion();
+        String InstanceId = payload.getRepository().InstanceId();
         IAcsClient client = SaeClientFactory.getClient(regionId, context.getExecutionCredentials());
         String imageUrl = getImageUrl(payload);
         DeployApplicationResponse resp;
         try {
-            resp = deployApplication(client, appId, imageUrl);
-            logger.info(String.format("Trigger deploy image[%s] to application[%s].", appId, imageUrl));
+            resp = deployApplication(client, appId, imageUrl, InstanceId);
+            logger.info(String.format("Trigger deploy InstanceId[%s] image[%s] to application[%s].", InstanceId, appId, imageUrl));
         } catch (Exception e) {
-            logger.error(String.format("Trigger deploy image[%s] to application[%s] failed.", appId, imageUrl));
+            logger.error(String.format("Trigger deploy InstanceId[%s] image[%s] to application[%s] failed.", InstanceId, appId, imageUrl));
             response.setStatus(500);
             OutputStream out = response.getOutputStream();
-            out.write(String.format("Trigger deploy image[%s] to application[%s] failed.\n", appId, imageUrl).getBytes());
+            out.write(String.format("Trigger deploy InstanceId[%s] image[%s] to application[%s] failed.\n", appId, imageUrl).getBytes());
             out.write((e.toString()).getBytes());
             out.flush();
             out.close();
