@@ -34,6 +34,7 @@ public class DeployTrigger implements HttpRequestHandler {
             response.getOutputStream().write(("Unauthorized token: " + token).getBytes());
             return;
         }
+        String acrInstanceId = request.getParameter("Acr_InstanceId");
         String appId = request.getParameter("APP_ID");
         ServletInputStream bodyStream = request.getInputStream();
         Payload payload = JSONObject.parseObject(bodyStream, Payload.class);
@@ -89,11 +90,11 @@ public class DeployTrigger implements HttpRequestHandler {
         return imageUrl;
     }
 
-    private DeployApplicationResponse deployApplication(IAcsClient client, String appId, String imageUrl) throws ClientException {
+    private DeployApplicationResponse deployApplication(IAcsClient client, String appId, String imageUrl, String acrInstanceId) throws ClientException {
         DeployApplicationRequest request = new DeployApplicationRequest();
         request.setAppId(appId);
         request.setImageUrl(imageUrl);
-        request.setAcrInstanceId("cri-4cg6iiey6t2se8nt");
+        request.setAcrInstanceId(acrInstanceId);
         setInstanceIds(String instanceIds) 
         DeployApplicationResponse resp = client.getAcsResponse(request);
         return resp;
