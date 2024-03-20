@@ -86,6 +86,7 @@ public class DeployTrigger implements HttpRequestHandler {
                 payload.getRepository().getRegion(),
                 payload.getRepository().getRepoFullName(),
                 payload.getPushData().getTag());
+        system.out.print("imageUrl : " + imageUrl);
         return imageUrl;
     }
 
